@@ -11,8 +11,13 @@
   },
   "dependencies": {
     "@nuxthub/core": "latest",
+    "@tresjs/nuxt": "^3.0.7",
     "nuxt": "^3.13.0",
+    "three": "^0.168.0",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "wrangler": "^3.76.0"
   }
 }
