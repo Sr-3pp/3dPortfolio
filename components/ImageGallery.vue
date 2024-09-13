@@ -24,11 +24,14 @@ const blobHandler = async () => {
   <div class="image-gallery">
     <h2>Images</h2>
     <form @submit.prevent="blobHandler">
-      <input
-        type="file"
-        @change="blobImage = ($event as any).target.files[0]"
-        accept="*/image"
-      />
+      <label>
+        <span>Add Image</span>
+        <input
+          type="file"
+          @change="blobImage = ($event as any).target.files[0]"
+          accept="*/image"
+        />
+      </label>
       <button type="submit">Submit</button>
     </form>
     <ul class="image-gallery-list">

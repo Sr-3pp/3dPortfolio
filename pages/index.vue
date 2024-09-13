@@ -1,4 +1,17 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+definePageMeta({
+  htmlAttrs: {
+    lang: "en",
+  },
+  title: "sr3pp Portfolio",
+  meta: [
+    {
+      name: "description",
+      content: "Welcome to Sr3pp's Portfolio",
+    },
+  ],
+});
+</script>
 
 <template>
   <div class="container">

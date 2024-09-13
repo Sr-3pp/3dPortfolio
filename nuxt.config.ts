@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const cachePolicy = "public,max-age=31536000,s-maxage=31536000";
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -29,6 +30,15 @@ export default defineNuxtConfig({
             @import "~/assets/scss/transitions.scss";
             @import "~/assets/scss/tokens.scss";
           `,
+        },
+      },
+    },
+  },
+  nitro: {
+    routeRules: {
+      "/**": {
+        headers: {
+          "cache-control": cachePolicy,
         },
       },
     },
