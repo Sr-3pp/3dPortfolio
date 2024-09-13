@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const hobbies = await $fetch("/api/content/content/about.json?section=hobbies");
+const { hobbies } = await $fetch("/api/content/content/about.json");
 </script>
 
 <template>
