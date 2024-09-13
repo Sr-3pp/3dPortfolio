@@ -2,8 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  modules: ["@nuxthub/core", "@tresjs/nuxt"],
+  modules: ["@nuxthub/core"],
   hub: {
     database: true,
+    blob: true,
   },
 });
