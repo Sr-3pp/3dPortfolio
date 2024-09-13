@@ -141,7 +141,7 @@ const blobHandler = async (event) => {
     <ul>
       <li v-for="image in images">
         <p>{{ image.pathname }}</p>
-        <img :src="`${image.pathname}`" alt="" />
+        <img :src="`/img/${image.pathname}`" alt="" />
       </li>
     </ul>
 
