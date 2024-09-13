@@ -1,6 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
+  <NuxtRouteAnnouncer />
   <header>
     <nav>
       <ul>

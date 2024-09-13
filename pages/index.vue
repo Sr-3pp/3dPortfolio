@@ -2,15 +2,12 @@
 
 <template>
   <div class="container">
-    <NuxtRouteAnnouncer />
-
     <Projects />
 
     <LazyHobbies />
 
     <LazyImageGallery />
   </div>
-  <LazyThreeCanvas />
 </template>
 
 <style lang="scss">

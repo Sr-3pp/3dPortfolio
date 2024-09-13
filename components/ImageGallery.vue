@@ -33,7 +33,13 @@ const blobHandler = async () => {
     </form>
     <ul class="image-gallery-list">
       <li v-for="image in images">
-        <NuxtImg :src="`/blob/${image.pathname}`" :alt="image.pathname" />
+        <NuxtImg
+          loading="lazy"
+          :src="`/blob/${image.pathname}`"
+          :alt="image.pathname"
+          width="300"
+          height="300"
+        />
       </li>
     </ul>
   </div>
@@ -48,6 +54,10 @@ const blobHandler = async () => {
     display: flex;
     flex-wrap: wrap;
     gap: pxToRem(20);
+
+    img {
+      object-fit: cover;
+    }
   }
 }
 </style>
