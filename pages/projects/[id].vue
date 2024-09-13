@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 const project_id = useRoute().params.id;
-const { data } = await useAsyncData("project", async () => {
+const { data }: any = await useAsyncData("project", async () => {
   const project = await $fetch(`/api/projects/${project_id}`);
   return {
     project,
   };
 });
 
-const project = ref(data.value.project);
+const project: any = ref(data.value.project);
 </script>
 
 <template>
-  <section>
+  <section class="container">
     <h1>
       {{ project.name }}
     </h1>

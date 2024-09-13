@@ -1,0 +1,10 @@
+//function pxToRem($px, $base: 16px)
+@function pxToRem($px, $base: 16px) {
+  @if unitless($px) {
+    $px: $px * 1px;
+  }
+  @if unitless($base) {
+    $base: $base * 1px;
+  }
+  @return calc($px / $base) * 1rem;
+}
