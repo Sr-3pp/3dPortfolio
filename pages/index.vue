@@ -21,6 +21,7 @@ useHead({
 
     <LazyImageGallery />
   </div>
+  <LazyThreeCanvas />
 </template>
 
 <style lang="scss">
