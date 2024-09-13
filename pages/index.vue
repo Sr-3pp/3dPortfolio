@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-definePageMeta({
+useHead({
   htmlAttrs: {
     lang: "en",
   },
