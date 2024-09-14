@@ -28,7 +28,7 @@ onMounted(() => {
 
   // Load the GLB model
   loader.load(
-    "/models/vueLogo.glb", // Replace with the actual path to your GLB file
+    "/blob/models/vueLogo.glb", // Replace with the actual path to your GLB file
     (gltf) => {
       model = gltf.scene;
       scene.add(model);
@@ -80,8 +80,7 @@ const animate = () => {
 </script>
 
 <template>
-  <h2>3d</h2>
-  <div ref="tres"></div>
+  <div class="tres" ref="tres"></div>
 </template>
 
 <style scoped></style>

@@ -7,9 +7,9 @@ const { hobbies } = await $fetch("/api/content/content/about.json");
     <h2>Hobbies</h2>
     <ul class="hobbies-list">
       <li v-for="hobbie in hobbies">
-        <p>
+        <span>
           {{ hobbie.name }}
-        </p>
+        </span>
       </li>
     </ul>
   </div>

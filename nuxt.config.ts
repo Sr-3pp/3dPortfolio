@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    //"@/assets/scss/fonts/index.scss",
+    "normalize.css/normalize.css",
+    "@/assets/scss/fonts/index.scss",
     "@/assets/scss/main.scss",
   ],
   vite: {
@@ -35,6 +36,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    compressPublicAssets: true,
     routeRules: {
       "/**": {
         headers: {

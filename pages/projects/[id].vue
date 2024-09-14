@@ -16,7 +16,7 @@ const project: any = ref(data.value.project);
       {{ project.name }}
     </h1>
     <figure>
-      <img :src="project.photo" alt="" />
+      <img :src="project.banner" alt="" />
     </figure>
   </section>
 </template>

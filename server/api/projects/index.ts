@@ -1,9 +1,5 @@
-export default defineEventHandler(() => {
-  const db = hubDatabase();
-  const projects = db.prepare(`
-  SELECT *
-  FROM projects
-  ORDER BY created_at DESC
-  `);
-  return projects.all();
+export default defineEventHandler(async () => {
+  const projects = await useDrizzle().select().from(tables.projects).all();
+
+  return projects;
 });

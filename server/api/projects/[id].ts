@@ -1,12 +1,8 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, "id");
-  const db = hubDatabase();
-  const projects = db
-    .prepare(
-      `
-  SELECT * FROM projects WHERE id = ?1
-  `
-    )
-    .bind(id);
-  return projects.first();
+  const projects = (await useDrizzle().select().from(tables.projects)).find(
+    (p) => p.id === Number(id)
+  );
+
+  return projects;
 });

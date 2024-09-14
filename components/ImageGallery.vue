@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const { data }: any = await useAsyncData(async () => {
-  const images = await $fetch("/api/blob/images");
+  const images = await $fetch("/api/blob/img");
 
   return {
     images,
   };
 });
+
 const images = ref(data.value.images);
 const blobImage: Ref<string | null> = ref(null);
 
