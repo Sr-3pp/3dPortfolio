@@ -8,13 +8,15 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "tokenize": "bun run tokens/index.ts"
   },
   "dependencies": {
     "@nuxt/image": "latest",
     "@nuxthub/core": "latest",
     "add": "^2.0.6",
     "drizzle-orm": "^0.33.0",
+    "json-to-var": "1.1.1",
     "normalize.css": "^8.0.1",
     "nuxt": "^3.13.0",
     "three": "^0.168.0",

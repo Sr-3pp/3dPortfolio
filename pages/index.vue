@@ -12,8 +12,9 @@ useHead({
   ],
 });
 const $imageGallery: Ref<any> = ref(null);
-const openGallery = () => {
-  ($imageGallery as any).value.toggleDialog();
+const $iconGallery: Ref<any> = ref(null);
+const openGallery = (library: string) => {
+  (library === "icon" ? $iconGallery : $imageGallery).value.toggleDialog();
 };
 const colorPalettes = [
   ["#E0F7EF", "#A4DBC1", "#D9F2E9", "#F4F9F7", "#B2E4D3"],
@@ -25,7 +26,8 @@ const colorPalettes = [
 <template>
   <div class="container">
     <Projects />
-    <button @click="openGallery">open image gallery</button>
+    <button @click="openGallery('image')">open image gallery</button>
+    <button @click="openGallery('icon')">open icon gallery</button>
     <LazyHobbies />
 
     <ul class="color-palette__list">
@@ -42,6 +44,10 @@ const colorPalettes = [
 
   <LazyModal ref="$imageGallery">
     <LazyImageGallery />
+  </LazyModal>
+
+  <LazyModal ref="$iconGallery">
+    <LazyIconGallery />
   </LazyModal>
 </template>
 

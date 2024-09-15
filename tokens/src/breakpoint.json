@@ -1,0 +1,9 @@
+{
+  "breakpoint": {
+    "xs": "(max-width: 743px)",
+    "sm": "(min-width: 744px)",
+    "md": "(min-width: 992px)",
+    "lg": "(min-width: 1200px)",
+    "xl": "(min-width: 1400px)"
+  }
+}

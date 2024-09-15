@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const defaultIcon = "/blob/icons/home.svg#s";
 const { data }: any = await useAsyncData("navbar", async () => {
   const sections = await $fetch("/api/blob/content");
   const site = await Promise.all(
@@ -30,9 +31,12 @@ const navbar = ref([
           :key="item.path"
           class="navbar-nav-item"
         >
-          <nuxt-link role="menuitem" :to="item.path">{{
-            item.label
-          }}</nuxt-link>
+          <nuxt-link role="menuitem" :to="item.path">
+            <Icon class="navbar-nav-item-icon" name="home" />
+            <span class="navbar-nav-item-label">
+              {{ item.label }}
+            </span>
+          </nuxt-link>
         </li>
       </ul>
     </nav>
@@ -46,11 +50,85 @@ const navbar = ref([
     justify-content: center;
   }
   &-nav-list {
+    padding: 0;
+    margin: 0;
     display: flex;
-    gap: pxToRem(20);
   }
   &-nav-item {
+    --size: #{pxToRem(16)};
+    --bg: #{$color-primary};
+    display: flex;
+    align-items: center;
     list-style-type: none;
+    color: $color-light;
+    position: relative;
+    margin: 0 pxToRem(20);
+    > a,
+    > button {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      padding: pxToRem(10);
+      background-color: var(--bg);
+      border-bottom-left-radius: pxToRem(16);
+      border-bottom-right-radius: pxToRem(16);
+      color: currentColor;
+      width: pxToRem(100);
+      max-width: pxToRem(40);
+      transition: max-width 0.3s ease-in-out;
+    }
+
+    &-icon {
+      width: pxToRem(20);
+      height: pxToRem(20);
+      color: currentColor;
+    }
+
+    &-label {
+      display: flex;
+      overflow: hidden;
+      max-width: 0%;
+      transition: max-width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+    }
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      width: var(--size);
+      height: var(--size);
+      background: radial-gradient(
+        circle at 0% -0%,
+        transparent var(--size),
+        var(--bg) var(--size)
+      );
+      position: absolute;
+      top: 0;
+    }
+
+    &::before {
+      right: 100%;
+      transform: rotate(-90deg);
+    }
+
+    &::after {
+      left: 100%;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      --bg: #{$color-secondary};
+      > * {
+        background-color: $color-secondary;
+        color: $color-dark;
+        max-width: 300px;
+      }
+
+      .navbar-nav-item-label {
+        margin-left: pxToRem(10);
+        max-width: 100%;
+      }
+    }
   }
 }
 </style>

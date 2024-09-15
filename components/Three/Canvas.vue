@@ -23,6 +23,10 @@ onMounted(() => {
   renderer.setClearColor(0x000000, 0);
   (tres.value as HTMLElement).appendChild(renderer.domElement);
 
+  // Enable shadow rendering in the renderer
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // For softer shadows
+
   // Create a GLTFLoader
   const loader = new GLTFLoader();
 
@@ -32,6 +36,14 @@ onMounted(() => {
     (gltf) => {
       model = gltf.scene;
       scene.add(model);
+
+      // Make the model cast shadows
+      model.traverse((node: any) => {
+        if (node.isMesh) {
+          node.castShadow = true;
+          node.receiveShadow = true; // Allow the model to receive shadows as well
+        }
+      });
 
       // Optionally, you can adjust the model's position, scale, or rotation here
       //model.position.set(0, 0, 0);
@@ -55,6 +67,12 @@ onMounted(() => {
   // Add directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
   directionalLight.position.set(5, 10, 7);
+  directionalLight.castShadow = true;
+  directionalLight.shadow.mapSize.width = 1024;
+  directionalLight.shadow.mapSize.height = 1024;
+  directionalLight.shadow.camera.near = 1;
+  directionalLight.shadow.camera.far = 20;
+  directionalLight.shadow.radius = 5; // Increase for softer shadows
   scene.add(directionalLight);
 
   // Add point light
