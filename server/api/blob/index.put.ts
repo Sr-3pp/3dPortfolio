@@ -1,3 +1,5 @@
+import { BlobType } from "@nuxthub/core";
+
 export default defineEventHandler(async (event) => {
   const form = await readFormData(event);
   const file = form.get("file") as File;
@@ -8,11 +10,11 @@ export default defineEventHandler(async (event) => {
 
   ensureBlob(file, {
     maxSize: "1MB",
-    types: ["image"],
+    types: (form.get("types") as string).split(",") as BlobType[],
   });
 
   return hubBlob().put(file.name, file, {
     addRandomSuffix: false,
-    prefix: "img",
+    prefix: form.get("prefix") as string,
   });
 });

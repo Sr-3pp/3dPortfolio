@@ -13,6 +13,8 @@ const blobImage: Ref<string | null> = ref(null);
 const blobHandler = async () => {
   const formData = new FormData();
   formData.append("file", blobImage.value as string);
+  formData.append("type", "image");
+  formData.append("prefix", "img");
 
   await $fetch("/api/blob", {
     method: "PUT",

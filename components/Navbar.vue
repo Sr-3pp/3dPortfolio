@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const defaultIcon = "/blob/icons/home.svg#s";
+const defaultIcon = "home";
 const { data }: any = await useAsyncData("navbar", async () => {
   const sections = await $fetch("/api/blob/content");
   const site = await Promise.all(
@@ -11,9 +11,10 @@ const { data }: any = await useAsyncData("navbar", async () => {
   };
 });
 const navbar = ref([
-  { label: "Home", path: "/" },
+  { label: "Home", path: "/", icon: "home" },
   ...data.value.site.map((section: any, i: number) => ({
     label: section.meta["menu-label"],
+    icon: section.meta["menu-icon"] || defaultIcon,
     path: data.value.sections[i].pathname
       .replace("content", "")
       .replace(".json", ""),
@@ -32,7 +33,7 @@ const navbar = ref([
           class="navbar-nav-item"
         >
           <nuxt-link role="menuitem" :to="item.path">
-            <Icon class="navbar-nav-item-icon" name="home" />
+            <Icon class="navbar-nav-item-icon" :name="item.icon" />
             <span class="navbar-nav-item-label">
               {{ item.label }}
             </span>
@@ -81,7 +82,9 @@ const navbar = ref([
     &-icon {
       width: pxToRem(20);
       height: pxToRem(20);
-      color: currentColor;
+      &.icon {
+        color: currentColor;
+      }
     }
 
     &-label {
