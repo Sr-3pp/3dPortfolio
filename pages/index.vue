@@ -11,15 +11,21 @@ useHead({
     },
   ],
 });
-const $imageGallery: Ref<any> = ref(null);
-const $iconGallery: Ref<any> = ref(null);
-const $contentManager: Ref<any> = ref(null);
-const openGallery = (library: string) => {
+const $imageModal: Ref<any> = ref(null);
+const $iconModal: Ref<any> = ref(null);
+const $contentManagerModal: Ref<any> = ref(null);
+
+const mediaSetters = reactive({
+  icon: "",
+  image: "",
+});
+
+const openGallery = async (library: string) => {
   (library === "icon"
-    ? $iconGallery
+    ? $iconModal
     : library == "content"
-    ? $contentManager
-    : $imageGallery
+    ? $contentManagerModal
+    : $imageModal
   ).value.toggleDialog();
 };
 const colorPalettes = [
@@ -27,11 +33,16 @@ const colorPalettes = [
   ["#FF8552", "#FFC857", "#6B4B9E", "#2A9D8F", "#F4A261"],
   ["#1E2D24", "#2C3E50", "#34495E", "#1F2F16", "#22313F"],
 ];
+
+provide("iconModal", $iconModal);
+provide("imageModal", $imageModal);
+provide("mediaSetters", mediaSetters);
 </script>
 
 <template>
   <div class="container">
     <Projects />
+
     <button @click="openGallery('image')">open image gallery</button>
     <button @click="openGallery('icon')">open icon gallery</button>
     <button @click="openGallery('content')">open content manager</button>
@@ -49,16 +60,20 @@ const colorPalettes = [
   </div>
   <LazyThreeCanvas />
 
-  <LazyModal ref="$imageGallery">
-    <LazyImageGallery />
+  <Popover>
+    <Ai />
+  </Popover>
+
+  <LazyModal ref="$imageModal">
+    <LazyImageGallery ref="$imageGallery" />
   </LazyModal>
 
-  <LazyModal ref="$iconGallery">
-    <LazyIconGallery />
+  <LazyModal ref="$iconModal">
+    <LazyIconGallery ref="$iconGallery" @setIcon="mediaSetters.icon = $event" />
   </LazyModal>
 
-  <LazyModal ref="$contentManager">
-    <ContentManager />
+  <LazyModal ref="$contentManagerModal">
+    <LazyContentManager ref="$contentManager" />
   </LazyModal>
 </template>
 

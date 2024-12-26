@@ -11,7 +11,6 @@ const { data }: any = await useAsyncData(async () => {
 });
 
 const icons = ref(data.value.icons);
-
 const blobIcon: any = ref(null);
 const previewIcon = ref("");
 
@@ -124,7 +123,9 @@ const deleteIcon = async (name: string, idx: number) => {
       </li>
       <li class="icons-list-item" v-for="(icon, i) in icons">
         <button @click="deleteIcon(icon.pathname, i)">delete</button>
-        <Icon :name="icon.name" />
+        <button @click="$emit('setIcon', icon)">
+          <Icon :name="icon.name" />
+        </button>
       </li>
     </ul>
   </div>

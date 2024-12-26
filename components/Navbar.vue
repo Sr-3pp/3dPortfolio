@@ -46,6 +46,8 @@ const navbar = ref([
 
 <style scoped lang="scss">
 .navbar {
+  position: sticky;
+  top: 0;
   &-nav {
     display: flex;
     justify-content: center;
@@ -74,7 +76,7 @@ const navbar = ref([
       border-bottom-left-radius: pxToRem(16);
       border-bottom-right-radius: pxToRem(16);
       color: currentColor;
-      width: pxToRem(100);
+      width: pxToRem(110);
       max-width: pxToRem(40);
       transition: max-width 0.3s ease-in-out;
     }

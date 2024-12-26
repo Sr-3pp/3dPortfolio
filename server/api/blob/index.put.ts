@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
   });
 
   return hubBlob().put(file.name, file, {
-    addRandomSuffix: false,
     prefix: form.get("prefix") as string,
   });
 });

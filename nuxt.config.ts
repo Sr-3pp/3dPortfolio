@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   hub: {
     database: true,
     blob: true,
+    ai: true,
   },
   image: {
     dir: "blob",
